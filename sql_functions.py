@@ -29,8 +29,9 @@ def sql_server_pull():
 
 	try:
 		df.columns = pd.DataFrame(np.matrix(cursor.description))[0]
+		df.drop_duplicates(inplace=True)
 	except:
 		df = None
 		print('Dataframe is empty')
 
-	return df.drop_duplicates()
+	return df
